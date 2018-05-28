@@ -1,21 +1,28 @@
 function main() {
 
   var smlinks = document.getElementsByClassName("smlink");
+  var counting = [];
 
-  for(i = 0; i < smlinks.length; i++) {
-    smlinks[i].onclick = function(){
-      counter(this.getElementsByClassName("smlastclick")[0]);
+  $(".smlink").click(function(){
+    var countingBool = false;
+    for (i = 0; i < counting.length; i++) {
+      if (counting[i] == this) {
+        this.dataset.count = 0;
+        countingBool = true;
+      }
     }
-  }
+    if (countingBool == false) {
+      counting.push(this);
+      var thisE = this;
+      var thisElement = this.getElementsByClassName("smlastclick")[0];
+      setInterval(function() {
+        count = thisE.dataset.count;
+        thisElement.innerHTML = timeConverter(count);
+        thisE.dataset.count = Number(count) + 1;
+      },1000);
+    }
+  });
 
-}
-
-function counter(element) {
-  var count = 0
-  setInterval(function(){
-    element.innerHTML = timeConverter(count);
-    count++;
-  },1000);
 }
 
 function timeConverter(count) {
