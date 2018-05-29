@@ -23,6 +23,21 @@ function main() {
     }
   });
 
+  displayTime();
+  setInterval(function() {
+    displayTime();
+  },1000);
+
+}
+
+function displayTime() {
+  var currentDayTime = new Date();
+  var days =  ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+  document.getElementById("currenttime").innerHTML =
+  "<span class='datespan'>" + days[currentDayTime.getDay()-1] + " " +
+  (("0"+currentDayTime.getDate()).slice(-2)) + " " + (("0"+(currentDayTime.getMonth()+1)).slice(-2)) + " " + (currentDayTime.getFullYear()-2000) + "</span><br>" +
+  "<span class='timespan'> " + (("0"+currentDayTime.getHours()).slice(-2)) + " " + (("0"+currentDayTime.getMinutes()).slice(-2)) +
+  "<span class='secondspan'> " + (("0"+currentDayTime.getSeconds()).slice(-2)) + "</span></span>";
 }
 
 function timeConverter(count) {
