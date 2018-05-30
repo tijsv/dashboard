@@ -4,14 +4,9 @@ function main() {
   var counting = [];
 
   $(".smlink").click(function(){
-    var countingBool = false;
-    for (i = 0; i < counting.length; i++) {
-      if (counting[i] == this) {
-        this.dataset.count = 0;
-        countingBool = true;
-      }
-    }
-    if (countingBool == false) {
+    if (counting.includes(this)) {
+      this.dataset.count = 0;
+    } else {
       counting.push(this);
       var thisE = this;
       var thisElement = this.getElementsByClassName("smlastclick")[0];
@@ -42,7 +37,7 @@ function displayTime() {
 
 function timeConverter(count) {
   var hoursAgo = Math.floor(count/3600);
-  var minutesAgo = Math.floor(count/60);
+  var minutesAgo = (Math.floor(count/60)%60);
   var secondsAgo = count%60;
   hoursAgo = ("0" + hoursAgo).slice(-2);
   minutesAgo = ("0" + minutesAgo).slice(-2);

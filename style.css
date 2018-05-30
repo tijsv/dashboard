@@ -26,12 +26,14 @@ body {
   font-weight: 300;
   margin: 2vw auto 4vw auto;
   font-size: 64px;
-  line-height: 72px;
+  line-height: 68px;
   /* letter-spacing: 2px; */
 }
 
 #currenttime .timespan {
-  border-top: 1px solid #FDFFFC;
+  border-top: 1px solid rgba(253,255,252,0.5);
+  border-bottom: 1px solid rgba(253,255,252,0.5);
+  padding: 0 1vw;
 }
 
 #currenttime .secondspan {
@@ -63,7 +65,7 @@ body {
   border-radius: 2px;
 }
 
-.smelement0,.smelement1,.smelement2,.smelement3,.smelement4,.smelement5,.smelement6,.smelement7,.smelement8 {
+.smelement0,.smelement1,.smelement2,.smelement3,.smelement4,.smelement5,.smelement6,.smelement7,.smelement8,.smelement9,.smelement10 {
   background-color: rgb(29,37,45);
   transition: 0.4s all ease;
 }
@@ -108,12 +110,15 @@ body {
   transition: 0.2s all ease;
 }
 
-.smelement8:hover {
+.smelement8:hover,.smelement9:hover {
   background-color: #5dfc71;
   transition: 0.2s all ease;
 }
 
-
+.smelement10:hover {
+  background-color: rgb(245,197,24);
+  transition: 0.2s all ease;
+}
 
 .smelementImg {
   position: absolute;
