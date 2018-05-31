@@ -87,7 +87,7 @@ function getLiveStreams() {
           'Client-ID': '7pgg8wka8nyy76fnn9wbpd9j2nv5p7'
         },
         success: function(channels) {
-          console.log(channels);
+          // console.log(channels);
           for (i = 0; i < channels.data.length; i++) {
             var el = document.createElement('div');
             var elA = document.createElement('a');
