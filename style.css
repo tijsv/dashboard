@@ -187,14 +187,15 @@ body {
 
 .twitchchannel {
   position: relative;
-  width: 19vw;
-  height: 10.6875vw;
+  width: 18vw;
+  height: 10.125vw;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0.5vw;
   border-radius: 2px;
   overflow: hidden;
+  border-left: 1vw solid #2EC4B6;
 }
 
 .twitchchannellink {
@@ -252,8 +253,8 @@ body {
     margin: 1vw;
   }
   .twitchchannel {
-    width: 38vw;
-    height: 21.375vw;
+    width: 37vw;
+    height: 20.8125vw;
     margin: 1vw;
   }
   .twitchchanneltext {
@@ -268,8 +269,8 @@ body {
     margin: 1vw;
   }
   .twitchchannel {
-    width: 78vw;
-    height: 43.875vw;
+    width: 77vw;
+    height: 43.3125vw;
     margin: 1vw;
   }
   .twitchchanneltext {
