@@ -1,5 +1,62 @@
 function main() {
 
+  var linksArray = [
+    ["google", "https://www.google.com/", "./images/logo_google.svg", "#f4c20d"],
+    ["facebook", "https://www.facebook.com/", "./images/logo_fb.svg", "rgb(59,89,152)"],
+    ["twitter", "https://twitter.com/", "./images/logo_twitter.svg", "rgb(29,161,242)"],
+    ["reddit", "https://www.reddit.com/r/all/", "./images/logo_reddit.svg", "#ff4500"],
+    ["youtube", "https://www.youtube.com/", "./images/logo_youtube.svg", "#ff0000"],
+    ["outlook", "https://login.live.com/", "./images/logo_outlook.svg", "#0072C6"],
+    ["twitch", "https://www.twitch.tv/directory/all", "./images/logo_twitch.svg", "#6441a5"],
+    ["netflix", "https://www.netflix.com/", "./images/logo_netflix.svg", "#e50914"],
+    ["vrtnws", "https://www.vrt.be/vrtnws/nl/", "./images/logo_vrt.svg", "#5dfc71"],
+    ["sporza", "https://sporza.be/nl/", "./images/logo_sporza.svg", "#5dfc71"],
+    ["imdb", "https://www.imdb.com/", "./images/logo_imdb.svg", "rgb(245,197,24)"]
+  ];
+
+  for (i = 0; i < linksArray.length; i++) {
+    var smelement = document.createElement('div');
+    var smlink = document.createElement('a');
+    var smelementimg = document.createElement('img');
+    var smelementp = document.createElement('p');
+
+    smelement.className = "socialmediaelement";
+    smelement.style.backgroundColor = "rgb(29,37,45)";
+    smelement.style.transition = "0.4s all ease";
+    smlink.className = "smlink";
+    smelementimg.className = "smelementimg";
+    smelementp.className = "smlastclick";
+
+    smelement.dataset.sm = linksArray[i][0];
+    smelement.dataset.color = linksArray[i][3];
+    smlink.href = linksArray[i][1];
+    smlink.target = "_blank";
+    smlink.dataset.count = 0;
+    smelementimg.src = linksArray[i][2];
+    smelementp.innerHTML = "not<br> clicked<br> yet";
+
+    smlink.append(smelementimg);
+    smlink.append(smelementp);
+    smelement.append(smlink);
+    document.getElementById('dbsocialmedia').append(smelement);
+  }
+
+  var allSocialMediaElements = document.getElementsByClassName('socialmediaelement');
+
+  for (i = 0; i < allSocialMediaElements.length; i++) {
+    allSocialMediaElements[i].onmouseover = function() {
+      this.style.backgroundColor = this.dataset.color;
+      this.getElementsByClassName("smelementimg")[0].style.opacity = "1";
+      this.getElementsByClassName("smelementimg")[0].style.transform = "scale(1.2)";
+    }
+    allSocialMediaElements[i].onmouseleave = function() {
+      this.style.backgroundColor = "rgb(29,37,45)";
+      this.getElementsByClassName("smelementimg")[0].style.opacity = "0.2";
+      this.getElementsByClassName("smelementimg")[0].style.transform = "scale(1)";
+    }
+  }
+
+
   var smlinks = document.getElementsByClassName("smlink");
   var counting = [];
 
