@@ -29,6 +29,8 @@ function main() {
     getLiveStreams();
   };
 
+  getRSSFeed();
+
 
 
 }
@@ -103,6 +105,7 @@ function getLiveStreams() {
             var updatedLink = imgLink.replace('{width}x{height}','640x360');
             elImg.src = updatedLink;
             elA.href = "https://www.twitch.tv/" + userName;
+            elA.target = "_blank";
             elP.innerHTML = "<span class='namespan'>" + userName + "</span><br>";
             elP.innerHTML += "<span class='titlespan'>" + channels.data[i].title.slice(0,30) + " ...</span><br>";
             elP.innerHTML += "<span class='viewersspan'>" + channels.data[i].viewer_count + " viewers</span>";
@@ -116,6 +119,21 @@ function getLiveStreams() {
 
     }
   });
+}
+
+function getRSSFeed() {
+
+  $.ajax({
+    type: 'GET',
+    url: 'https://www.vrt.be/vrtnieuws/nl.rss.articles.xml',
+    headers: {
+      'Access-Control-Allow-Origin': true
+    },
+    success: function(RSSFeed) {
+      console.log(RSSFeed);
+    }
+  });
+
 }
 
 window.onload = function() {
