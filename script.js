@@ -23,10 +23,12 @@ function main() {
     displayTime();
   },1000);
 
-  // getLiveStreams();
-  // setInterval(function() {
-  //   getLiveStreams();
-  // },60000);
+  var refreshFeedButton = document.getElementById("refreshbutton");
+  getLiveStreams();
+  refreshFeedButton.onclick = function() {
+    getLiveStreams();
+  };
+
 
 
 }
@@ -85,21 +87,28 @@ function getLiveStreams() {
           'Client-ID': '7pgg8wka8nyy76fnn9wbpd9j2nv5p7'
         },
         success: function(channels) {
-          // console.log(channels);
+          console.log(channels);
           for (i = 0; i < channels.data.length; i++) {
             var el = document.createElement('div');
+            var elA = document.createElement('a');
             var elP = document.createElement('p');
-            elP.className = "feedtext";
+            var elImg = document.createElement('img');
             el.className = "twitchchannel";
+            elA.className = "twitchchannellink";
+            elP.className = "twitchchanneltext";
+            elImg.className = "twitchchannelimg";
             var imgLink = channels.data[i].thumbnail_url;
             var userNamePart = imgLink.replace('https://static-cdn.jtvnw.net/previews-ttv/live_user_','');
             var userName = userNamePart.replace('-{width}x{height}.jpg','');
             var updatedLink = imgLink.replace('{width}x{height}','640x360');
-            el.style.backgroundImage = "url(" + updatedLink + ")";
-            var string = channels.data[i].viewer_count + " - " + userName + " - "+ channels.data[i].title + " ";
-            elP.innerHTML += string;
-            elP.innerHTML += "<br>";
-            el.append(elP);
+            elImg.src = updatedLink;
+            elA.href = "https://www.twitch.tv/" + userName;
+            elP.innerHTML = "<span class='namespan'>" + userName + "</span><br>";
+            elP.innerHTML += "<span class='titlespan'>" + channels.data[i].title.slice(0,30) + " ...</span><br>";
+            elP.innerHTML += "<span class='viewersspan'>" + channels.data[i].viewer_count + " viewers</span>";
+            elA.append(elImg)
+            elA.append(elP);
+            el.append(elA);
             feed.append(el);
           }
         }

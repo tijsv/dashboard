@@ -5,34 +5,25 @@ body, h1, h2, h3, p {
 
 body {
   background-color: #131B23;
-  font-family: 'Raleway', sans-serif;
+  font-family: "open sans", sans-serif;
 }
 
-/* h2 {
-  float:left;
-  color: rgba(255,255,255, 0.8);
-  text-transform: uppercase;
-  margin: 5vw 0 5vw 5vw;
-  font-size: 48px;
-  letter-spacing: 2px;
-} */
-
-/* https://coolors.co/fdfffc-2ec4b6-e71d36-131b23-ff9f1c */
+/* color scheme: https://coolors.co/fdfffc-2ec4b6-e71d36-131b23-ff9f1c */
 
 #currenttime {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
   color: #FDFFFC;
   font-weight: 300;
-  margin: 2vw auto 4vw auto;
+  margin: 0 auto 2vw auto;
   font-size: 64px;
   line-height: 68px;
   /* letter-spacing: 2px; */
 }
 
 #currenttime .timespan {
-  border-top: 1px solid rgba(253,255,252,0.5);
-  border-bottom: 1px solid rgba(253,255,252,0.5);
+  /* background-color: rgb(29,37,45); */
+  /* border-top: 1px solid rgba(253,255,252,0.8); */
+  /* border-bottom: 1px solid rgba(253,255,252,0.8); */
   padding: 0 1vw;
 }
 
@@ -44,16 +35,22 @@ body {
 #currenttime .datespan {
   font-size: 18px;
   color: #FDFFFC;
+  font-weight: 400;
   text-transform: uppercase;
+  padding: 0.5vw 1vw;
+  border-radius: 2px;
+  background-color: rgb(29,37,45);
 }
+
+
+/* ---------- LINKS ---------- */
 
 #dbsocialmedia {
   width: 80vw;
   display: flex;
-  /* justify-content: left; */
   align-items: center;
   flex-wrap: wrap;
-  margin: 0 10vw;
+  margin: 0 auto;
   align-content: flex-start;
 }
 
@@ -153,47 +150,129 @@ body {
   opacity: 0;
 }
 
-#feed {
-  background-color: rgba(255,255,255,0.1);
-  margin: 2vw 0;
-  height: 100px;
-  width: 100vw;
+
+/* ---------- FEED ---------- */
+
+#refreshbutton {
+  display: inline-block;
+  margin: 2vw 10.5vw 1vw 10.5vw;
+  background-color: rgb(29,37,45);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: 0.2s all ease;
 }
 
-.feedtext {
+.refreshbuttontext {
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 0.5vw 1vw;
+  color: #FDFFFC;
+  font-weight: 600;
+}
+
+#refreshbutton:hover {
+  background-color: #2EC4B6;
+  transition: 0.1s all ease;
+}
+
+#feed {
   width: 80vw;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   margin: 0 auto;
-  padding: 2vw 0;
-  color: white;
+  align-content: flex-start;
 }
 
 .twitchchannel {
-  width: 16vw;
-  height: 9vw;
+  position: relative;
+  width: 19vw;
+  height: 10.6875vw;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 0.5vw;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.twitchchannellink {
+  text-decoration: none;
+}
+
+.twitchchannelimg {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  opacity: 0.1;
+  transition: 0.5s all ease;
+}
+
+.twitchchanneltext {
+  padding: 1vw;
+  width: 80vw;
+  color: #FDFFFC;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.twitchchanneltext .namespan {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.twitchchanneltext .titlespan {
+  opacity: 0.75;
+}
+
+.twitchchanneltext .viewersspan {
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.twitchchannel:hover .twitchchannelimg {
+  transform: scale(1.1);
+  opacity: 0.3;
+  transition: 0.5s all ease;
 }
 
 
 
 
+
+
+/* ---------- RESPONSIVE ---------- */
+
 @media screen and (max-width: 1280px) {
   .socialmediaelement {
-    position: relative;
     height: 18vw;
     width: 18vw;
     margin: 1vw;
-    border-radius: 2px;
+  }
+  .twitchchannel {
+    width: 38vw;
+    height: 21.375vw;
+    margin: 1vw;
+  }
+  .twitchchanneltext {
+    padding: 2vw;
   }
 }
 
 @media screen and (max-width: 678px) {
   .socialmediaelement {
-    position: relative;
     height: 38vw;
     width: 38vw;
     margin: 1vw;
-    border-radius: 2px;
+  }
+  .twitchchannel {
+    width: 78vw;
+    height: 43.875vw;
+    margin: 1vw;
+  }
+  .twitchchanneltext {
+    padding: 4vw;
   }
 }
