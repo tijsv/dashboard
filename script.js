@@ -56,13 +56,12 @@ function main() {
     }
   }
 
-
   var smlinks = document.getElementsByClassName("smlink");
   var counting = [];
 
   $(".smlink").click(function(){
     if (counting.includes(this)) {
-      this.dataset.count = 0;
+      this.dataset.count = 0;2
     } else {
       counting.push(this);
       var thisE = this;
@@ -90,9 +89,9 @@ function main() {
 
 function displayTime() {
   var currentDayTime = new Date();
-  var days =  ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+  var days =  ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   document.getElementById("currenttime").innerHTML =
-  "<span class='datespan'>" + days[currentDayTime.getDay()-1] + " " +
+  "<span class='datespan'>" + days[currentDayTime.getDay()] + " " +
   (("0"+currentDayTime.getDate()).slice(-2)) + " " + (("0"+(currentDayTime.getMonth()+1)).slice(-2)) + " " + (currentDayTime.getFullYear()-2000) + "</span><br>" +
   "<span class='timespan'> " + (("0"+currentDayTime.getHours()).slice(-2)) + " " + (("0"+currentDayTime.getMinutes()).slice(-2)) +
   "<span class='secondspan'> " + (("0"+currentDayTime.getSeconds()).slice(-2)) + "</span></span>";
@@ -143,29 +142,43 @@ function getLiveStreams() {
         },
         success: function(channels) {
           // console.log(channels);
-          for (i = 0; i < channels.data.length; i++) {
+          if (channels.data.length == 0) {
             var el = document.createElement('div');
             var elA = document.createElement('a');
             var elP = document.createElement('p');
-            var elImg = document.createElement('img');
             el.className = "twitchchannel";
+            el.style.backgroundColor = "rgb(29,37,45)";
             elA.className = "twitchchannellink";
             elP.className = "twitchchanneltext";
-            elImg.className = "twitchchannelimg";
-            var imgLink = channels.data[i].thumbnail_url;
-            var userNamePart = imgLink.replace('https://static-cdn.jtvnw.net/previews-ttv/live_user_','');
-            var userName = userNamePart.replace('-{width}x{height}.jpg','');
-            var updatedLink = imgLink.replace('{width}x{height}','640x360');
-            elImg.src = updatedLink;
-            elA.href = "https://www.twitch.tv/" + userName;
-            elA.target = "_blank";
-            elP.innerHTML = "<span class='namespan'>" + userName + "</span><br>";
-            elP.innerHTML += "<span class='titlespan'>" + channels.data[i].title.slice(0,30) + " ...</span><br>";
-            elP.innerHTML += "<span class='viewersspan'>" + channels.data[i].viewer_count + " viewers</span>";
-            elA.append(elImg)
+            elP.innerHTML = "<span class='namespan'>No streams online :'(</span><br>";
             elA.append(elP);
             el.append(elA);
             feed.append(el);
+          } else {
+            for (i = 0; i < channels.data.length; i++) {
+              var el = document.createElement('div');
+              var elA = document.createElement('a');
+              var elP = document.createElement('p');
+              var elImg = document.createElement('img');
+              el.className = "twitchchannel";
+              elA.className = "twitchchannellink";
+              elP.className = "twitchchanneltext";
+              elImg.className = "twitchchannelimg";
+              var imgLink = channels.data[i].thumbnail_url;
+              var userNamePart = imgLink.replace('https://static-cdn.jtvnw.net/previews-ttv/live_user_','');
+              var userName = userNamePart.replace('-{width}x{height}.jpg','');
+              var updatedLink = imgLink.replace('{width}x{height}','640x360');
+              elImg.src = updatedLink;
+              elA.href = "https://www.twitch.tv/" + userName;
+              elA.target = "_blank";
+              elP.innerHTML = "<span class='namespan'>" + userName + "</span><br>";
+              elP.innerHTML += "<span class='titlespan'>" + channels.data[i].title.slice(0,30) + " ...</span><br>";
+              elP.innerHTML += "<span class='viewersspan'>" + channels.data[i].viewer_count + " viewers</span>";
+              elA.append(elImg)
+              elA.append(elP);
+              el.append(elA);
+              feed.append(el);
+            }
           }
         }
       });
